@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskati_app/core/utils/colors.dart';
 
 import 'features/splash/presentation/view/splash_view.dart';
 
@@ -11,9 +12,27 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
+      themeMode: ThemeMode.system,
+      theme: ThemeData(appBarTheme: AppBarTheme(backgroundColor: AppColors.white,),
+      inputDecorationTheme: InputDecorationTheme(
+        enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: AppColors.primary),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: AppColors.primary),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: AppColors.primary),
+                    ),
+      )
+      ),
+      
       debugShowCheckedModeBanner: false,
-      home: SplashViwe(),
+      home: const SplashViwe(),
     );
   }
 }

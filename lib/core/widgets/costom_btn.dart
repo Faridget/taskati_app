@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taskati_app/core/utils/colors.dart';
 
+// ignore: camel_case_types
 class custombtn extends StatelessWidget {
   const custombtn({
     super.key, required this.text, required this.onPressed, required this.width, this.height,

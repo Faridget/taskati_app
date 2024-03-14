@@ -1,7 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:taskati_app/core/utils/colors.dart';
 import 'package:taskati_app/core/widgets/costom_btn.dart';
+
+
+String? path;
+String name =''; 
 
 class UploadView extends StatefulWidget {
   const UploadView({super.key});
@@ -17,7 +24,31 @@ class _UploadViewState extends State<UploadView> {
 
       appBar:AppBar(
         actions: [
-          TextButton(onPressed: (){}, child:  Text('Done',style: TextStyle(fontSize: 18,color: AppColors.primary,),)),
+          TextButton(onPressed: (){
+            if(path != null && name.isNotEmpty){
+              print('done');
+            }
+            else if(path == null && name.isNotEmpty)
+            {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: AppColors.red,
+                  content: const Text('Please Enter your name and Photos')),
+              );
+             
+            }
+            else if(path != null && name.isEmpty){
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                backgroundColor: AppColors.red,
+                content: const Text('Please Enter your name')),
+              );
+             
+            }
+            else{
+
+            }
+          }, child:  Text('Done',style: TextStyle(fontSize: 18,color: AppColors.primary,),)),
         ],
       ),
       body:    Center(
@@ -26,21 +57,30 @@ class _UploadViewState extends State<UploadView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CircleAvatar(
+               CircleAvatar(
                 radius: 70,
-                backgroundImage: AssetImage('assets/images/user.png'),            
+                backgroundImage:(path!=null)?FileImage(File(path!)) as ImageProvider :const AssetImage('assets/images/user.png'),            
               ),
               const Gap(10),
-              custombtn(text: 'Upload From Camra', onPressed: () {  }, width: 250,),
+              custombtn(text: 'Upload From Camra', onPressed: () { 
+                uploadFromCamra();
+               }, width: 250,),
                 const Gap(10),
-                custombtn(text: 'Upload From Gallery', onPressed: () {  }, width: 250,),
+                custombtn(text: 'Upload From Gallery', onPressed: () {
+                  uploadFromGalley();
+                  }, width: 250,),
                 const Gap(10),
                 const Divider(
                   indent: 20,
                   endIndent: 20,
                 ),
                 const Gap(10),
-                TextFormField(),
+                TextFormField(
+                  onChanged: (value) {
+                    name =value;
+                  },
+                  decoration: const InputDecoration(hintText: 'Enter Your Name'),
+                ),
                  
             ],
           ),
@@ -48,6 +88,23 @@ class _UploadViewState extends State<UploadView> {
       ),
     );
   }
+uploadFromCamra() async{
+ final PickedImage=   await ImagePicker().pickImage(source: ImageSource.camera);
+ if(PickedImage != null){
+    setState(() {
+      path =PickedImage.path;
+    });
+ }
 }
+uploadFromGalley() async{
+ final PickedImage=   await ImagePicker().pickImage(source: ImageSource.gallery);
+ if(PickedImage != null){
+    setState(() {
+      path =PickedImage.path;
+    });
+ }
+}
+}
+
 
 

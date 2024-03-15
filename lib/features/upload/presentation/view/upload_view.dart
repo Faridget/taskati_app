@@ -3,8 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:taskati_app/core/functions/custom_dialogs.dart';
+import 'package:taskati_app/core/functions/routing.dart';
 import 'package:taskati_app/core/utils/colors.dart';
 import 'package:taskati_app/core/widgets/costom_btn.dart';
+import 'package:taskati_app/features/home/presentation/view/home_view.dart';
 
 
 String? path;
@@ -26,27 +29,19 @@ class _UploadViewState extends State<UploadView> {
         actions: [
           TextButton(onPressed: (){
             if(path != null && name.isNotEmpty){
-              print('done');
+              navigatReplace(context, const HomeView());
             }
             else if(path == null && name.isNotEmpty)
             {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  backgroundColor: AppColors.red,
-                  content: const Text('Please Enter your name and Photos')),
-              );
+             showErroDialog(context,'Please Enter your  Photos');
              
             }
             else if(path != null && name.isEmpty){
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                backgroundColor: AppColors.red,
-                content: const Text('Please Enter your name')),
-              );
+               showErroDialog(context,'Please Enter your  Name');
              
             }
             else{
-
+             showErroDialog(context,'Please Enter your name and Photos');
             }
           }, child:  Text('Done',style: TextStyle(fontSize: 18,color: AppColors.primary,),)),
         ],

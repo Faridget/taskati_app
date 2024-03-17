@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:taskati_app/core/functions/custom_dialogs.dart';
 import 'package:taskati_app/core/functions/routing.dart';
@@ -21,6 +22,7 @@ class UploadView extends StatefulWidget {
 }
 
 class _UploadViewState extends State<UploadView> {
+  var box = Hive.box('user');
   @override
   Widget build(BuildContext context) {
     return   Scaffold(

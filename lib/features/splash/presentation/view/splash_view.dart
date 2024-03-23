@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:taskati_app/core/functions/routing.dart';
+import 'package:taskati_app/core/services/local_storage.dart';
 import 'package:taskati_app/core/utils/txt_styal.dart';
+import 'package:taskati_app/features/home/presentation/view/home_view.dart';
 import 'package:taskati_app/features/upload/presentation/view/upload_view.dart';
 
 class SplashViwe extends StatefulWidget {
@@ -16,9 +18,10 @@ class _SplashViweState extends State<SplashViwe> {
   @override
   void initState() {
     super.initState();
+    bool isUpload =AppLocalStorage.getCachedDate('isUpload')?? false;
     Future.delayed(const Duration(seconds: 3), () {
       navigatReplace(
-        context,
+        context,(isUpload)? const HomeView():
         const UploadView(),
       );
     });

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:taskati_app/core/services/local_storage.dart';
 import 'package:taskati_app/core/utils/colors.dart';
 
 import 'features/splash/presentation/view/splash_view.dart';
 
 void main() async{
-  await Hive.initFlutter();
+   await Hive.initFlutter();
+   AppLocalStorage().init();
    await Hive.openBox('user');
   runApp(const MainApp());
 }

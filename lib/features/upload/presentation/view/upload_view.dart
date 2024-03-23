@@ -6,6 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:taskati_app/core/functions/custom_dialogs.dart';
 import 'package:taskati_app/core/functions/routing.dart';
+import 'package:taskati_app/core/services/local_storage.dart';
 import 'package:taskati_app/core/utils/colors.dart';
 import 'package:taskati_app/core/widgets/costom_btn.dart';
 import 'package:taskati_app/features/home/presentation/view/home_view.dart';
@@ -31,6 +32,11 @@ class _UploadViewState extends State<UploadView> {
         actions: [
           TextButton(onPressed: (){
             if(path != null && name.isNotEmpty){
+              
+              AppLocalStorage.cacheDate('name',name);
+              AppLocalStorage.cacheDate('image',path);
+              AppLocalStorage.cacheDate('isUpload',true);
+
               navigatReplace(context, const HomeView());
             }
             else if(path == null && name.isNotEmpty)

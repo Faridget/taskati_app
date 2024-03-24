@@ -4,9 +4,11 @@ import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:taskati_app/core/functions/routing.dart';
 import 'package:taskati_app/core/services/local_storage.dart';
 import 'package:taskati_app/core/utils/colors.dart';
 import 'package:taskati_app/core/utils/txt_styal.dart';
+import 'package:taskati_app/features/add-task/presentation/view/add_task_view.dart';
 import 'package:taskati_app/features/home/presentation/widegts/task_item.dart';
 
 class HomeView extends StatefulWidget {
@@ -72,7 +74,9 @@ class _HomeViewState extends State<HomeView> {
                     SizedBox(
                       height: 45,
                       child: FloatingActionButton.extended(
-                        onPressed: (){},
+                        onPressed: (){
+                          navigatTo(context, const AddTaskView(),);
+                        },
                         label: const Text('+ Add Task'),
                         extendedPadding: const EdgeInsets.symmetric(vertical: 5,horizontal: 15),
                         backgroundColor: AppColors.primary,
@@ -97,12 +101,16 @@ class _HomeViewState extends State<HomeView> {
                 });
                 },
               ),
-              ListView.builder(
-                itemCount: 3,
-                itemBuilder: (BuildContext context, int index) {
-                  return const TaskItem();
-                },
-              ),    
+              Expanded(
+                child: ListView.builder(
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, int index) {
+                    return const TaskItem();
+                  },
+                ),
+              ),
+              
+                 
               
             ],
            ),

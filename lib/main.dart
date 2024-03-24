@@ -7,8 +7,9 @@ import 'features/splash/presentation/view/splash_view.dart';
 
 void main() async{
    await Hive.initFlutter();
+    await Hive.openBox('user');
    AppLocalStorage().init();
-   await Hive.openBox('user');
+  
   runApp(const MainApp());
 }
 
@@ -21,6 +22,8 @@ class MainApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: ThemeData(appBarTheme: AppBarTheme(backgroundColor: AppColors.white,),
       inputDecorationTheme: InputDecorationTheme(
+        constraints: const BoxConstraints(maxHeight: 60),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
         enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(color: AppColors.primary),

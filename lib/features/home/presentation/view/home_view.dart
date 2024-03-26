@@ -63,8 +63,8 @@ class _HomeViewState extends State<HomeView> {
                       radius: 22,
                       backgroundImage:path !=null ?
                       FileImage(File(path!)) as ImageProvider 
-                      : const AssetImage('assets/images/user.png'),
-                                        ),
+                      :const AssetImage('assets/images/user.png'),
+                      ),
                     ),
                 ],
               ),

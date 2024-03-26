@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:taskati_app/core/services/local_storage.dart';
+import 'package:taskati_app/core/themes/themes.dart';
 import 'package:taskati_app/features/add-task/data/task_model.dart';
+
 import 'features/splash/presentation/view/splash_view.dart';
 
 void main() async{
@@ -21,11 +23,15 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  ValueListenableBuilder(
       valueListenable: Hive.box('user').listenable(),
-      builder: (context, value, child) {
-        return const MaterialApp(
-        //8themeMode: ThemeMode.system,
+      builder: (context, Box, child) {
+        var darkMode = AppLocalStorage.getCachedDate('darkMode')?? false;
+        return  MaterialApp(
+        themeMode: ThemeMode.light,
+        theme: AppTheme.appLightTheme,
+        darkTheme: AppTheme.appDarkTheme,
+        
         debugShowCheckedModeBanner: false,
-        home: SplashViwe(),
+        home: const SplashViwe(),
       );
       }
        

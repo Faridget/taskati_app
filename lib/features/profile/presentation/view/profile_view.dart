@@ -22,7 +22,8 @@ class _ProfileViewState extends State<ProfileView> {
         foregroundColor: AppColors.primary,
         actions: [
         IconButton(onPressed: (){
-
+          var darkMode = AppLocalStorage.getCachedDate('darkMode')??false;
+            AppLocalStorage.cacheDate('darkMode', !darkMode);
         }, icon: const Icon(Icons.dark_mode_rounded)),
       ],),
       body: 

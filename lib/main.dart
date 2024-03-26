@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:taskati_app/core/services/local_storage.dart';
-import 'package:taskati_app/core/utils/colors.dart';
 import 'package:taskati_app/features/add-task/data/task_model.dart';
-
 import 'features/splash/presentation/view/splash_view.dart';
 
 void main() async{
@@ -21,29 +19,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      themeMode: ThemeMode.system,
-      theme: ThemeData(appBarTheme: AppBarTheme(backgroundColor: AppColors.white,),
-      inputDecorationTheme: InputDecorationTheme(
-        constraints: const BoxConstraints(maxHeight: 60),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-        enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: AppColors.primary),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: AppColors.primary),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: AppColors.primary),
-                    ),
-      )
-      ),
-      
-      debugShowCheckedModeBanner: false,
-      home: const SplashViwe(),
+    return  ValueListenableBuilder(
+      valueListenable: Hive.box('user').listenable(),
+      builder: (context, value, child) {
+        return const MaterialApp(
+        //8themeMode: ThemeMode.system,
+        debugShowCheckedModeBanner: false,
+        home: SplashViwe(),
+      );
+      }
+       
     );
   }
 }

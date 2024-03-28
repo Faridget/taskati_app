@@ -26,7 +26,7 @@ class MainApp extends StatelessWidget {
       builder: (context, Box, child) {
         var darkMode = AppLocalStorage.getCachedDate('darkMode')?? false;
         return  MaterialApp(
-        themeMode: ThemeMode.light,
+        themeMode:darkMode? ThemeMode.dark : ThemeMode.light,
         theme: AppTheme.appLightTheme,
         darkTheme: AppTheme.appDarkTheme,
         

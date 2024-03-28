@@ -29,13 +29,13 @@ class TaskItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(model.title,
-            style: getTitleStyle(color: AppColors.white,fontSize: 16,),),
+            style: getTitleStyle(context,color: AppColors.white,fontSize: 16,),),
             const Gap(7),
               Row(
               children: [
                 Icon(Icons.watch_later_outlined,color: AppColors.white),
                 const Gap(10),
-                Text('${model.startTime} : ${model.endTime}',style: getBodyStyle(color: AppColors.white,)),
+                Text('${model.startTime} : ${model.endTime}',style: getBodyStyle(context,color: AppColors.white,)),
               ],
             ),
             const Gap(7),
@@ -43,7 +43,7 @@ class TaskItem extends StatelessWidget {
               model.note,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: getBodyStyle(color: AppColors.white)),
+              style: getBodyStyle(context,color: AppColors.white)),
           ],
          ),
        ),
@@ -57,7 +57,7 @@ class TaskItem extends StatelessWidget {
          RotatedBox(
         quarterTurns: 3,
         child: Text(model.isComplte ? 'Complted' :'TODDO'
-        ,style: getTitleStyle(color: AppColors.white,fontSize: 14,),),)
+        ,style: getTitleStyle(context,color: AppColors.white,fontSize: 14,),),)
     
      ],),
     );

@@ -50,8 +50,8 @@ class _HomeViewState extends State<HomeView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Hello ${name.isEmpty?'':name}',
-                      style: getTitleStyle(color: AppColors.primary),),
-                       Text('Have A nice Day',style: getBodyStyle(),),
+                      style: getTitleStyle(context,color: AppColors.primary),),
+                       Text('Have A nice Day',style: getBodyStyle(context),),
                     ],
                   ),
                   const Spacer(),
@@ -75,8 +75,8 @@ class _HomeViewState extends State<HomeView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(DateFormat.yMMMEd().format(DateTime.now()).toString(),
-                      style: getTitleStyle(),),
-                       Text('Today',style: getBodyStyle(),),
+                      style: getTitleStyle(context),),
+                       Text('Today',style: getBodyStyle(context),),
                     ],
                   ),
                   const Spacer(),
@@ -104,6 +104,11 @@ class _HomeViewState extends State<HomeView> {
                 initialSelectedDate: DateTime.now(),
                 selectionColor: AppColors.primary,
                 selectedTextColor: Colors.white,
+                dateTextStyle: getSmallStyle(
+                  color: Theme.of(context).colorScheme.onSurface
+                ),
+                dayTextStyle: getBodyStyle(context),
+                monthTextStyle: getBodyStyle(context),
                 onDateChange: (date) {
                // New date selected
                setState(() {
@@ -165,7 +170,7 @@ class _HomeViewState extends State<HomeView> {
                           child:   Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Text('Delete',style: getBodyStyle(color:AppColors.white, )),
+                              Text('Delete',style: getBodyStyle(context,color:AppColors.white, )),
                               const Gap(5),
                               Icon(Icons.delete,color: AppColors.white,),
                             ],
@@ -178,7 +183,7 @@ class _HomeViewState extends State<HomeView> {
                             children: [
                               Icon(Icons.check,color: AppColors.white,),
                               const Gap(5),
-                               Text('Complete',style: getBodyStyle(color:AppColors.white, ),)
+                               Text('Complete',style: getBodyStyle(context,color:AppColors.white, ),)
                             ],
                           ),
                         ),

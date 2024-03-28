@@ -37,12 +37,12 @@ class _SplashViweState extends State<SplashViwe> {
             Lottie.asset('assets/images/splash.json'),
             Text(
               'Taskati',
-              style: getTitleStyle(),
+              style: getTitleStyle(context),
             ),
             const Gap(20),
             Text(
               'Orginz Your Time',
-              style: getBodyStyle(),
+              style: getBodyStyle(context),
             ),
           ],
         ),

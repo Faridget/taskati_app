@@ -25,6 +25,7 @@ class _AddTaskViewState extends State<AddTaskView> {
   var noteController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+     
     return   Scaffold(
       resizeToAvoidBottomInset: false,
       appBar:AppBar(
@@ -33,13 +34,13 @@ class _AddTaskViewState extends State<AddTaskView> {
       (){
           Navigator.of(context).pop();
       }, icon: Icon(Icons.arrow_back_ios,color: AppColors.primary,)),
-       title: Text('Add Task',style: getTitleStyle(color: AppColors.primary),),),
+       title: Text('Add Task',style: getTitleStyle(context,color: AppColors.primary),),),
     body: Padding(
       padding: const EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Title',style: getTitleStyle(fontSize: 16,),),
+          Text('Title',style: getTitleStyle(context,fontSize: 16,),),
           const Gap(5) ,
           TextFormField(
             controller: titleController,
@@ -51,7 +52,7 @@ class _AddTaskViewState extends State<AddTaskView> {
             // ],
           ),
           const Gap(10),
-          Text('Note',style: getTitleStyle(fontSize: 16,),),
+          Text('Note',style: getTitleStyle(context,fontSize: 16,),),
           const Gap(5) ,
           TextFormField(
             controller: noteController,
@@ -61,11 +62,23 @@ class _AddTaskViewState extends State<AddTaskView> {
             ),
           ),
           const Gap(10),
-          Text('Date',style: getTitleStyle(fontSize: 16,),),
+          Text('Date',style: getTitleStyle(context,fontSize: 16,),),
           const Gap(5) ,
           TextFormField(
             onTap: () {
              showDatePicker(context: context,
+             builder:(context, child) {
+               return Theme(data: ThemeData(
+                colorScheme: ColorScheme.fromSeed(
+                primary: AppColors.white,
+                onPrimary: AppColors.black,
+                seedColor: AppColors.black,
+                
+                
+                
+                )
+               ), child: child!);
+             },
               firstDate: DateTime.now(),
                lastDate:DateTime(2050))
                .then((value) {
@@ -86,9 +99,9 @@ class _AddTaskViewState extends State<AddTaskView> {
           const Gap(10),
           Row(
             children: [
-              Expanded(child: Text('Start Time',style: getBodyStyle(),)),
+              Expanded(child: Text('Start Time',style: getBodyStyle(context),)),
               const Gap(10),
-              Expanded(child: Text('Start Time',style: getBodyStyle(),)),
+              Expanded(child: Text('Start Time',style: getBodyStyle(context),)),
             ],
           ),
           const Gap(7),
